@@ -1,0 +1,1048 @@
+unit drug;
+
+interface
+
+type
+ TDrug = class(TObject)
+   name: string;
+   group: string;
+
+    //сферы психики
+    //восприятие
+    hyper_hypostesia_anestesia: integer;
+
+    parestesia: integer;
+    senestopatia: integer;
+
+    illusions: integer;
+    hallutination_true: integer;
+    hallutination_false: integer;
+
+    derealisacia: integer;
+    depersonalisacia: integer;
+
+    // мышление
+    hyper_hypomentzia: integer;
+    bessvaznost: integer;
+
+    rigidnost: integer;
+    obstoyatelnost: integer;
+
+    paralogichnost: integer;
+    rezonerstvo: integer;
+
+    mentizm: integer;
+    shperrung: integer;
+
+    obsesion_compulsion: integer;
+    sverhcenniost: integer;
+    bred_sistema: integer;
+    tema_idei: string;
+    avtomatizm: integer;
+
+    // память и интеллект
+    hyper_hypomnesia: integer;
+
+    amnesia_retro: integer;
+    amnesia_antero: integer;
+    amnesia_congrad: integer;
+
+    amnesia_fiks: integer;
+
+    pseudoreminiscencii: integer;
+    confabulacii: integer;
+    cryptomnesii: integer;
+
+    intellect: integer;
+
+    // эмоции
+    hyper_hypotimia: integer;
+    hyperpatia_apatia: integer;
+
+    trevoga_spocoistvie: integer;
+
+    emo_uploshenie: integer;
+
+    eiforia_disforia: integer;
+
+    emotion_labilnost: integer;
+
+    ammbivalentnost: integer;
+
+    anestezia_psihica: integer;
+
+
+    // воля и активность
+    hyper_hypobulia: integer;
+    vozbugdenie_stupor: integer;
+
+    katatonia: boolean;
+    // сознание - Синдромы отдельно!
+    hyper_oglushenie_sopor_coma: integer;
+
+      /////////////////
+      parkinson: real;
+      hyperkinez: real;
+      dyskinez: real;
+      adrenolit: real;
+      holinolit: real;
+      endo: real;
+      sexi: real;
+      /////////////////
+
+    procedure CreateDrug;
+    procedure CreateNeuroleptik(namedrug: string; doza: Real);
+    procedure CreateTancvilizator(namedrug: string; doza: Real);
+    procedure CreateSedatik(namedrug: string; doza: Real);
+    procedure CreateNormotimik(namedrug: string; doza: Real);
+    procedure CreateAdaptagen(namedrug: string; doza: Real);
+    procedure CreateAntidepressant(namedrug: string; doza: Real);
+    procedure CreateNootrop(namedrug: string; doza: Real);
+
+//    ? побочные эффекты ? как-то надо додумать
+
+
+ end;
+
+
+implementation
+   procedure TDrug.CreateDrug;
+  begin
+    self.hyper_hypostesia_anestesia:=0;
+    self.parestesia:=0;
+    self.senestopatia:=0;
+    self.illusions:=0;
+    self.hallutination_true:=0;
+    self.hallutination_false:=0;
+    self.derealisacia:=0;
+    self.depersonalisacia:=0;
+    // мышление
+    self.hyper_hypomentzia:=0;
+    self.bessvaznost:=0;
+    self.rigidnost:=0;
+    self.obstoyatelnost:=0;
+    self.paralogichnost:=0;
+    self.rezonerstvo:=0;
+    self.mentizm:=0;
+    self.shperrung:=0;
+    self.obsesion_compulsion:=0;
+    self.sverhcenniost:=0;
+    self.bred_sistema:=0;
+    self.tema_idei:='';
+    self.avtomatizm:=0;
+     // память и интеллект
+    self.hyper_hypomnesia:=0;
+    self.amnesia_retro:=0;
+    self.amnesia_antero:=0;
+    self.amnesia_congrad:=0;
+    self.amnesia_fiks:=0;
+    self.pseudoreminiscencii:=0;
+    self.confabulacii:=0;
+    self.cryptomnesii:=0;
+    self.intellect:=0;
+    // эмоции
+    self.hyper_hypotimia:=0;
+    self.hyperpatia_apatia:=0;
+    self.trevoga_spocoistvie:=0;
+    self.emo_uploshenie:=0;
+    self.eiforia_disforia:=0;
+    self.emotion_labilnost:=0;
+    self.ammbivalentnost:=0;
+    self.anestezia_psihica:=0;
+    // воля и активность
+    self.hyper_hypobulia:=0;
+    self.vozbugdenie_stupor:=0;
+    self.katatonia:=false;
+    // сознание - Синдромы отдельно!
+    self.hyper_oglushenie_sopor_coma:=0;
+
+    self.parkinson:=0;
+    self.hyperkinez:=0;
+    self.dyskinez:=0;
+    self.adrenolit:=0;
+    self.holinolit:=0;
+    self.endo:=0;
+    self.sexi:=0;
+
+   end;
+
+
+   procedure TDrug.CreateTancvilizator(namedrug: string; doza: Real);
+   const
+   DEISTVIE: integer = 2;
+   EFFECT: integer = 5;
+   OS_EFFECT: integer = 10;
+   var
+   sedativ, anxiolit: real;
+    begin
+    CreateDrug;
+    group:='транквилизатор';
+
+      if namedrug='Алпразолам' then begin
+      anxiolit:=4;
+      sedativ:=1;
+      doza:=doza/2;
+      end;
+
+      if namedrug='Грандаксин' then begin
+      anxiolit:=2;
+      sedativ:=0.25;
+      doza:=doza/20;
+      end;
+
+      if namedrug='Диазепам' then begin
+      anxiolit:=3;
+      sedativ:=1;
+      doza:=doza/10;
+      end;
+
+      if namedrug='Клоназепам' then begin
+      anxiolit:=4;
+      sedativ:=2;
+      doza:=doza/3;
+      end;
+
+      if namedrug='Нитразепам' then begin
+      anxiolit:=2;
+      sedativ:=3;
+      doza:=doza/5;
+      end;
+
+      if namedrug='Феназепам' then begin
+      anxiolit:=5;
+      sedativ:=2;
+      doza:=doza/1;
+      end;
+
+    self.name:=namedrug;
+    self.hyper_hypostesia_anestesia:=Round(-EFFECT*doza);
+    self.senestopatia:=Round(-EFFECT*doza);
+    self.illusions:=Round(-DEISTVIE*doza);
+    // мышление
+    self.hyper_hypomentzia:=Round(-EFFECT*doza);
+    self.rigidnost:=Round(DEISTVIE*doza);
+    self.mentizm:=Round(-DEISTVIE*doza);
+    self.obsesion_compulsion:=Round(-EFFECT*doza);
+    self.sverhcenniost:=Round(-DEISTVIE*doza);
+    self.bred_sistema:=Round(-DEISTVIE*doza);
+    // память и интеллект
+    self.amnesia_fiks:=Round(-DEISTVIE*doza);
+    self.hyper_hypomnesia:=Round(-DEISTVIE*doza);
+    // эмоции
+    self.trevoga_spocoistvie:=Round(-OS_EFFECT*doza);
+    self.eiforia_disforia:=Round(-OS_EFFECT*doza);
+    self.emotion_labilnost:=Round(-OS_EFFECT*doza);
+    // воля иактивность
+    self.hyperpatia_apatia:=Round(-EFFECT*doza);
+    self.hyper_hypobulia:=Round(-DEISTVIE*doza);
+    self.vozbugdenie_stupor:=Round(-EFFECT*doza);
+    // сознание - Синдромы отдельно!
+    self.hyper_oglushenie_sopor_coma:=Round(-DEISTVIE*doza);
+
+//////////////////////индивид особенности препарата/////////////////////////////
+//      anxiolit
+//      sedativ
+////////////////////////////////////////////////////////////////////////////////
+
+    self.hyper_hypostesia_anestesia:=Round(self.hyper_hypostesia_anestesia*((sedativ+anxiolit)/2));
+    self.senestopatia:=Round(self.senestopatia*sedativ);
+    self.illusions:=Round(self.illusions*sedativ);
+    // мышление
+    self.hyper_hypomentzia:=Round(self.hyper_hypomentzia*sedativ);
+    self.rigidnost:=Round(self.rigidnost*sedativ);
+    self.mentizm:=Round(self.mentizm*sedativ);
+    self.obsesion_compulsion:=Round(self.obsesion_compulsion*anxiolit);
+    self.sverhcenniost:=Round(self.sverhcenniost*sedativ);
+    self.bred_sistema:=Round(self.bred_sistema*sedativ);
+    // память и интеллект
+    self.amnesia_fiks:=Round(self.amnesia_fiks*sedativ);
+    self.hyper_hypomnesia:=Round(self.hyper_hypomnesia*sedativ);
+    // эмоции
+    self.trevoga_spocoistvie:=Round(self.trevoga_spocoistvie*anxiolit);
+    self.eiforia_disforia:=Round(self.eiforia_disforia*anxiolit);
+    self.emotion_labilnost:=Round(self.emotion_labilnost*((sedativ+anxiolit)/2));
+    // воля и активность
+    self.hyper_hypobulia:=Round(self.hyper_hypobulia*sedativ);
+    self.vozbugdenie_stupor:=Round(vozbugdenie_stupor*sedativ);
+    // сознание - Синдромы отдельно!
+    self.hyper_oglushenie_sopor_coma:=Round(self.hyper_oglushenie_sopor_coma*sedativ);
+   end;
+
+   procedure TDrug.CreateNeuroleptik(namedrug: string; doza: Real);
+   const
+   DEISTVIE: integer = 2;
+   EFFECT: integer = 5;
+   OS_EFFECT: integer = 10;
+   var
+   sedativ, antipsih, antibred: real;
+   begin
+    CreateDrug;
+    group:='нейролептик';
+      {
+      В общем делаем поб эффеты пока рассписываем переменные
+      в нач переменные, потом умножить на селф - или лучше сразу умножить на сэлф!!это же препарат а не общий эффект.
+      переменная глобальная сразу в сэлф записывается
+      }
+
+      if namedrug='Циклодол' then begin
+      antipsih:=0.1;
+      antibred:=0.1;
+      sedativ:=0.1;
+      doza:=doza/2;
+      /////////////////
+      self.parkinson:=-2*doza;
+      self.hyperkinez:=-3*doza;
+      self.dyskinez:=-2*doza;
+      self.adrenolit:=0.1*doza;
+      self.holinolit:=2*doza;
+      self.endo:=0.1*doza;
+      /////////////////
+      end;
+
+
+      if namedrug='Аминазин' then begin
+      antipsih:=2;
+      antibred:=2;
+      sedativ:=4;
+      doza:=doza/40;
+      /////////////////
+      self.parkinson:=4*doza;
+      self.hyperkinez:=2*doza;
+      self.dyskinez:=2*doza;
+      self.adrenolit:=6*doza;
+      self.holinolit:=4*doza;
+      self.endo:=4*doza;
+      /////////////////
+
+      end;
+
+      if namedrug='Хлорпротиксен' then begin
+      antipsih:=2;
+      antibred:=1;
+      sedativ:=3;
+      doza:=doza/20;
+      /////////////////
+      self.parkinson:=2*doza;
+      self.hyperkinez:=0.2*doza;
+      self.dyskinez:=0.2*doza;
+      self.adrenolit:=4*doza;
+      self.holinolit:=6*doza;
+      self.endo:=4*doza;
+      /////////////////
+      end;
+
+      if namedrug='Тизерцин' then begin
+      antipsih:=1;
+      antibred:=1;
+      sedativ:=4;
+      doza:=doza/40;
+      /////////////////
+      self.parkinson:=2*doza;
+      self.hyperkinez:=2*doza;
+      self.dyskinez:=0.2*doza;
+      self.adrenolit:=8*doza;
+      self.holinolit:=2*doza;
+      self.endo:=1*doza;
+      /////////////////
+
+      end;
+
+      if namedrug='Галоперидол' then begin
+      antipsih:=4;
+      antibred:=3;
+      sedativ:=2;
+      doza:=doza/4;
+      /////////////////
+      self.parkinson:=8*doza;
+      self.hyperkinez:=4*doza;
+      self.dyskinez:=4*doza;
+      self.adrenolit:=1*doza;
+      self.holinolit:=1*doza;
+      self.endo:=4*doza;
+      /////////////////
+      end;
+
+      if namedrug='Трифтазин' then begin
+      antipsih:=3;
+      antibred:=4;
+      sedativ:=1;
+      doza:=doza/8;
+      /////////////////
+      self.parkinson:=4*doza;
+      self.hyperkinez:=4*doza;
+      self.dyskinez:=4*doza;
+      self.adrenolit:=2*doza;
+      self.holinolit:=2*doza;
+      self.endo:=4*doza;
+      /////////////////
+      end;
+
+      if namedrug='Мажептил' then begin
+      antipsih:=5;
+      antibred:=3;
+      sedativ:=1;
+      doza:=doza/8;
+      /////////////////
+      self.parkinson:=4*doza;
+      self.hyperkinez:=6*doza;
+      self.dyskinez:=6*doza;
+      self.adrenolit:=4*doza;
+      self.holinolit:=2*doza;
+      self.endo:=4*doza;
+      /////////////////
+
+      end;
+
+      if namedrug='Эглонил' then begin
+      antipsih:=2;
+      antibred:=1;
+      sedativ:=0.25;
+      doza:=doza/80;
+      /////////////////
+      self.parkinson:=1*doza;
+      self.hyperkinez:=2*doza;
+      self.dyskinez:=0.2*doza;
+      self.adrenolit:=2*doza;
+      self.holinolit:=2*doza;
+      self.endo:=6*doza;
+      /////////////////
+      end;
+
+      if namedrug='Рисперидон' then begin      ///!!!!!!!!!!!!!!!!!
+      antipsih:=2;
+      antibred:=3;
+      sedativ:=1;
+      doza:=doza/2;
+      /////////////////
+      self.parkinson:=2*doza;
+      self.hyperkinez:=2*doza;
+      self.dyskinez:=2*doza;
+      self.adrenolit:=4*doza;
+      self.holinolit:=1*doza;
+      self.endo:=4*doza;
+      /////////////////
+      end;
+
+      if namedrug='Азалептин' then begin
+      antipsih:=3;
+      antibred:=3;
+      sedativ:=4;
+      doza:=doza/40;
+      /////////////////
+      self.parkinson:=1*doza;
+      self.hyperkinez:=1*doza;
+      self.dyskinez:=0.5*doza;
+      self.adrenolit:=4*doza;
+      self.holinolit:=6*doza;
+      self.endo:=6*doza;
+      /////////////////
+      end;
+
+      if namedrug='Зипрекса' then begin
+      antipsih:=3;
+      antibred:=3;
+      sedativ:=2;
+      doza:=doza/4;
+      /////////////////
+      self.parkinson:=1*doza;
+      self.hyperkinez:=2*doza;
+      self.dyskinez:=2*doza;
+      self.adrenolit:=1*doza;
+      self.holinolit:=4*doza;
+      self.endo:=6*doza;
+      /////////////////
+      end;
+
+      if namedrug='Неулептил' then begin
+      antipsih:=1;
+      antibred:=1;
+      sedativ:=3;
+      doza:=doza/15;
+      /////////////////
+      self.parkinson:=4*doza;
+      self.hyperkinez:=2*doza;
+      self.dyskinez:=2*doza;
+      self.adrenolit:=4*doza;
+      self.holinolit:=6*doza;
+      self.endo:=4*doza;
+      /////////////////
+      end;
+
+      if namedrug='Сонапакс' then begin
+      antipsih:=1;
+      antibred:=1;
+      sedativ:=3;
+      doza:=doza/40;
+      /////////////////
+      self.parkinson:=4*doza;
+      self.hyperkinez:=2*doza;
+      self.dyskinez:=2*doza;
+      self.adrenolit:=4*doza;
+      self.holinolit:=6*doza;
+      self.endo:=4*doza;
+      /////////////////
+      end;
+
+    self.hyper_hypostesia_anestesia:=Round(-EFFECT*doza);
+    self.senestopatia:=Round(-OS_EFFECT*doza);
+    self.illusions:=Round(-OS_EFFECT*doza);
+    self.hallutination_true:=Round(-OS_EFFECT*doza);
+    self.hallutination_false:=Round(-OS_EFFECT*doza);
+    self.derealisacia:=Round(-EFFECT*doza);
+    self.depersonalisacia:=Round(-EFFECT*doza);
+    // мышление
+    self.hyper_hypomentzia:=Round(-OS_EFFECT*doza);
+    self.rigidnost:=Round(DEISTVIE*doza);
+    self.paralogichnost:=Round(-OS_EFFECT*doza);
+    self.rezonerstvo:=Round(-EFFECT*doza);
+    self.mentizm:=Round(-EFFECT*doza);
+    self.shperrung:=Round(EFFECT*doza);
+    self.obsesion_compulsion:=Round(-EFFECT*doza);
+    self.sverhcenniost:=Round(-EFFECT*doza);
+    self.bred_sistema:=Round(-OS_EFFECT*doza);
+    self.avtomatizm:=Round(-OS_EFFECT*doza);
+     // память и интеллект
+    self.hyper_hypomnesia:=Round(-DEISTVIE*doza);
+    self.amnesia_fiks:=Round(DEISTVIE*doza);
+    self.pseudoreminiscencii:=Round(DEISTVIE*doza);
+    self.confabulacii:=Round(-EFFECT*doza);
+    // эмоции
+      if namedrug='Эглонил' then begin
+      self.hyper_hypotimia:=Round(OS_EFFECT*doza);
+      self.hyperpatia_apatia:=Round(OS_EFFECT*doza);
+      self.hyper_hypobulia:=Round(OS_EFFECT*doza);
+      self.vozbugdenie_stupor:=Round(OS_EFFECT*doza);
+      end else begin
+    self.hyper_hypotimia:=Round(-DEISTVIE*doza);
+    self.hyperpatia_apatia:=Round(-EFFECT*doza);
+    self.hyper_hypobulia:=Round(-EFFECT*doza);
+    self.vozbugdenie_stupor:=Round(-OS_EFFECT*doza);
+    end;
+    self.trevoga_spocoistvie:=Round(-OS_EFFECT*doza);
+    self.eiforia_disforia:=Round(-OS_EFFECT*doza);
+    self.emotion_labilnost:=Round(-EFFECT*doza);
+//    self.ammbivalentnost:=0;
+//    self.anestezia_psihica:=0;
+    // воля и активность
+    //self.hyper_hypobulia:=Round(-EFFECT*doza);
+    self.vozbugdenie_stupor:=Round(-OS_EFFECT*doza);
+    // сознание - Синдромы отдельно!
+    self.hyper_oglushenie_sopor_coma:=Round(-DEISTVIE*doza);
+
+//////////////////////индивид особенности препарата/////////////////////////////
+//      antipsih
+//      antibred
+//      sedativ
+////////////////////////////////////////////////////////////////////////////////
+
+        self.hyper_hypostesia_anestesia:=Round(self.hyper_hypostesia_anestesia*sedativ);
+        self.senestopatia:=Round(self.senestopatia*antipsih);
+        self.illusions:=Round(self.illusions*antipsih);
+        self.hallutination_true:=Round(self.hallutination_true*antipsih);
+        self.hallutination_false:=Round(self.hallutination_false*antipsih);
+        self.derealisacia:=Round(self.derealisacia*antibred);
+        self.depersonalisacia:=Round(self.depersonalisacia*antibred);
+        // мышление
+        self.hyper_hypomentzia:=Round(self.hyper_hypomentzia*sedativ);
+        self.paralogichnost:=Round(self.paralogichnost*antibred);
+        self.rigidnost:=Round(self.rigidnost*sedativ);
+        self.rezonerstvo:=Round(self.rezonerstvo*antibred);
+//        self.mentizm:=-EFFECT*doza;
+//        self.shperrung:=EFFECT*doza;
+        self.obsesion_compulsion:=Round(self.obsesion_compulsion*antibred);
+        self.sverhcenniost:=Round(self.sverhcenniost*antibred);
+        self.bred_sistema:=Round(self.bred_sistema*antibred);
+        self.avtomatizm:=Round(self.avtomatizm*antipsih);
+         // память и интеллект
+        self.hyper_hypomnesia:=Round(self.hyper_hypomnesia*antibred);
+        self.amnesia_fiks:=Round(self.amnesia_fiks*antibred);
+        self.pseudoreminiscencii:=Round(self.pseudoreminiscencii*antibred);
+        self.confabulacii:=Round(self.confabulacii*antibred);
+        // эмоции
+        self.hyper_hypotimia:=Round(self.hyper_hypotimia*sedativ);
+        self.hyperpatia_apatia:=Round(self.hyperpatia_apatia*sedativ);
+        self.trevoga_spocoistvie:=Round(self.trevoga_spocoistvie*sedativ);
+        if namedrug='Неулептил' then
+        self.eiforia_disforia:=Round(self.eiforia_disforia*sedativ*2) else
+        self.eiforia_disforia:=Round(self.eiforia_disforia*sedativ);
+
+        self.emotion_labilnost:=Round(self.emotion_labilnost*sedativ);
+    //    self.ammbivalentnost:=0;
+    //    self.anestezia_psihica:=0;
+        // воля и активность
+        self.hyper_hypobulia:=Round(self.hyper_hypobulia*sedativ);
+        self.vozbugdenie_stupor:=Round(self.vozbugdenie_stupor*sedativ);
+        // сознание - Синдромы отдельно!
+        self.hyper_oglushenie_sopor_coma:=Round(self.hyper_oglushenie_sopor_coma*sedativ);
+   end;
+
+   procedure TDrug.CreateSedatik(namedrug: string; doza: Real);
+   const
+   DEISTVIE: integer = 2;
+   EFFECT: integer = 5;
+   OS_EFFECT: integer = 10;
+   var
+   sedativ: real;
+    begin
+    CreateDrug;
+    group:='седатик';
+
+      if namedrug='Экстракт валерьяны' then begin
+      sedativ:=1;
+      doza:=doza/2;
+      end;
+
+      if namedrug='Беллатаминал' then begin
+      sedativ:=3;
+      doza:=doza/4;
+      end;
+
+      if namedrug='Экстракт пустырника' then begin
+      sedativ:=2;
+      doza:=doza/3;
+      end;
+
+
+
+    self.name:=namedrug;
+
+    self.hyper_hypostesia_anestesia:=Round(-EFFECT*doza);
+    self.hyper_hypomentzia:=Round(-DEISTVIE*doza);
+    self.obsesion_compulsion:=Round(-DEISTVIE*doza);
+    self.trevoga_spocoistvie:=Round(-OS_EFFECT*doza);
+    self.emotion_labilnost:=Round(-OS_EFFECT*doza);
+    self.hyper_hypobulia:=Round(-DEISTVIE*doza);
+    self.vozbugdenie_stupor:=Round(-EFFECT*doza);
+    self.eiforia_disforia:=Round(-OS_EFFECT*doza);
+
+//////////////////////индивид особенности препарата/////////////////////////////
+//      sedativ
+////////////////////////////////////////////////////////////////////////////////
+
+    self.hyper_hypostesia_anestesia:=Round(self.hyper_hypostesia_anestesia*sedativ);
+    self.hyper_hypomentzia:=Round(self.hyper_hypomentzia*sedativ);
+    self.obsesion_compulsion:=Round(self.obsesion_compulsion*sedativ);
+    self.trevoga_spocoistvie:=Round(self.trevoga_spocoistvie*sedativ);
+    self.emotion_labilnost:=Round(self.emotion_labilnost*sedativ);
+    self.hyper_hypobulia:=Round(self.hyper_hypobulia*sedativ);
+    self.vozbugdenie_stupor:=Round(vozbugdenie_stupor*sedativ);
+    self.eiforia_disforia:=Round(self.eiforia_disforia*sedativ);
+   end;
+
+   procedure TDrug.CreateNormotimik(namedrug: string; doza: Real);
+   const
+   DEISTVIE: integer = 2;
+   EFFECT: integer = 5;
+   OS_EFFECT: integer = 10;
+   var
+   normotim: real;
+   begin
+    CreateDrug;
+    group:='нормотимик';
+
+      if namedrug='Финлепсин' then begin
+      normotim:=2;
+      doza:=doza/250;
+      end;
+
+      if namedrug='Лития карбонат' then begin
+      normotim:=3;
+      doza:=doza/250;
+      end;
+
+      if namedrug='Вальпроат натрия' then begin
+      normotim:=1;
+      doza:=doza/180;
+      end;
+
+    self.hyper_hypostesia_anestesia:=Round(-DEISTVIE*doza);
+    self.senestopatia:=Round(-DEISTVIE*doza);
+    // мышление
+    self.hyper_hypomentzia:=Round(-OS_EFFECT*doza);
+    self.rigidnost:=Round(EFFECT*doza);
+    self.obsesion_compulsion:=Round(-OS_EFFECT*doza);
+    self.sverhcenniost:=Round(-EFFECT*doza);
+     // память и интеллект
+    self.hyper_hypomnesia:=Round(-EFFECT*doza);
+    // эмоции
+    self.hyperpatia_apatia:=Round(-EFFECT*doza);
+    self.hyper_hypotimia:=Round(-OS_EFFECT*doza);
+
+    self.trevoga_spocoistvie:=Round(-EFFECT*doza);
+    self.eiforia_disforia:=Round(-OS_EFFECT*doza);
+    self.emotion_labilnost:=Round(-OS_EFFECT*doza);
+    // воля и активность
+    self.hyper_hypobulia:=Round(-OS_EFFECT*doza);
+
+    self.vozbugdenie_stupor:=Round(-EFFECT*doza);
+
+//////////////////////индивид особенности препарата/////////////////////////////
+//      normotim
+////////////////////////////////////////////////////////////////////////////////
+
+        self.hyper_hypostesia_anestesia:=Round(self.hyper_hypostesia_anestesia*normotim);
+        self.senestopatia:=Round(self.senestopatia*normotim);
+        // мышление
+        self.hyper_hypomentzia:=Round(self.hyper_hypomentzia*normotim);
+        self.rigidnost:=Round(self.rigidnost*doza);
+        self.obsesion_compulsion:=Round(self.obsesion_compulsion*normotim);
+        self.sverhcenniost:=Round(self.sverhcenniost*normotim);
+         // память и интеллект
+        self.hyper_hypomnesia:=Round(self.hyper_hypomnesia*normotim);
+        // эмоции
+        self.hyperpatia_apatia:=Round(self.hyperpatia_apatia*normotim);
+        self.hyper_hypotimia:=Round(self.hyper_hypotimia*normotim);
+        self.trevoga_spocoistvie:=Round(self.trevoga_spocoistvie*normotim);
+        self.eiforia_disforia:=Round(self.eiforia_disforia*normotim);
+        self.emotion_labilnost:=Round(self.emotion_labilnost*normotim);
+        // воля и активность
+        self.hyper_hypobulia:=Round(self.hyper_hypobulia*normotim);
+        self.vozbugdenie_stupor:=Round(self.vozbugdenie_stupor*normotim);
+
+   end;
+
+   procedure TDrug.CreateAdaptagen(namedrug: string; doza: Real);
+   const
+   DEISTVIE: integer = 2;
+   EFFECT: integer = 5;
+   OS_EFFECT: integer = 10;
+   var
+   sedativ: real;
+    begin
+    CreateDrug;
+    group:='адаптаген';
+      if namedrug='Элеутерококк' then begin
+      sedativ:=1;
+      doza:=doza/10;
+      end;
+
+      if namedrug='Женьшень' then begin
+      sedativ:=2;
+      doza:=doza/10;
+      end;
+
+      if namedrug='Настойка аралии' then begin
+      sedativ:=3;
+      doza:=doza/10;
+      end;
+
+    self.name:=namedrug;
+
+    self.hyper_hypomentzia:=Round(EFFECT*doza);
+    self.trevoga_spocoistvie:=Round(DEISTVIE*doza);
+    self.emotion_labilnost:=Round(DEISTVIE*doza);
+    self.hyper_hypobulia:=Round(OS_EFFECT*doza);
+    self.vozbugdenie_stupor:=Round(EFFECT*doza);
+    self.hyperpatia_apatia:=Round(OS_EFFECT*doza);
+    self.rigidnost:=Round(-EFFECT*doza);
+    self.hyper_hypotimia:=Round(DEISTVIE*doza);
+
+//////////////////////индивид особенности препарата/////////////////////////////
+//      sedativ
+////////////////////////////////////////////////////////////////////////////////
+
+    self.hyper_hypomentzia:=Round(self.hyper_hypomentzia*sedativ);
+    self.trevoga_spocoistvie:=Round(self.trevoga_spocoistvie*sedativ);
+    self.emotion_labilnost:=Round(self.emotion_labilnost*sedativ);
+    self.hyper_hypobulia:=Round(self.hyper_hypobulia*sedativ);
+    self.vozbugdenie_stupor:=Round(vozbugdenie_stupor*sedativ);
+    self.hyperpatia_apatia:=Round(self.hyperpatia_apatia*sedativ);
+    self.rigidnost:=Round(self.rigidnost*sedativ);
+    self.hyper_hypotimia:=Round(self.hyper_hypotimia*sedativ);
+   end;
+
+   procedure TDrug.CreateAntidepressant(namedrug: string; doza: Real);
+   const
+   DEISTVIE: integer = 2;
+   EFFECT: integer = 5;
+   OS_EFFECT: integer = 10;
+   var
+   hipertim: integer;
+   sedat: real;
+   begin
+    CreateDrug;
+    group:='антидепрессант';
+    // сексуальные расстрйства?? нада как-то вписать в ингибиторы захв серы
+    // эндокринологию?
+
+
+      if namedrug='Мелипрамин' then begin
+      hipertim:=4;
+      sedat:=-2;
+      doza:=doza/100;
+      ///////////////
+      self.adrenolit:=4*doza;
+      self.holinolit:=6*doza;
+      self.sexi:=1*doza;
+      ///////////////
+      end;
+
+      if namedrug='Флуоксетин' then begin
+      hipertim:=3;
+      sedat:=-1;
+      doza:=doza/15;
+      ///////////////
+      self.adrenolit:=1*doza;
+      self.holinolit:=1*doza;
+      self.sexi:=6*doza;
+      ///////////////
+      end;
+
+      if namedrug='Аурорикс' then begin
+      hipertim:=3;
+      sedat:=-3;
+      doza:=doza/150;
+      ///////////////
+      self.adrenolit:=1*doza;
+      self.holinolit:=1*doza;
+      self.sexi:=1*doza;
+      ///////////////
+      end;
+
+      if namedrug='Анафранил' then begin
+      hipertim:=5;
+      sedat:=0.1;
+      doza:=doza/100;
+      ///////////////
+      self.adrenolit:=4*doza;
+      self.holinolit:=6*doza;
+      self.sexi:=1*doza;
+      ///////////////
+      end;
+
+      if namedrug='Паксил' then begin
+      hipertim:=3;
+      sedat:=0.1;
+      doza:=doza/15;
+      ///////////////
+      self.adrenolit:=1*doza;
+      self.holinolit:=1*doza;
+      self.sexi:=6*doza;
+      ///////////////
+      end;
+
+      if namedrug='Людиомил' then begin
+      hipertim:=3;
+      sedat:=1;
+      doza:=doza/100;
+      ///////////////
+      self.adrenolit:=4*doza;
+      self.holinolit:=4*doza;
+      self.sexi:=1*doza;
+      ///////////////
+      end;
+
+      if namedrug='Флувоксамин' then begin
+      hipertim:=3;
+      sedat:=1;
+      doza:=doza/100;
+      ///////////////
+      self.adrenolit:=1*doza;
+      self.holinolit:=1*doza;
+      self.sexi:=2*doza;
+      ///////////////
+      end;
+
+      if namedrug='Азафен' then begin
+      hipertim:=3;
+      sedat:=2;
+      doza:=doza/150;
+      ///////////////
+      self.adrenolit:=0.5*doza;
+      self.holinolit:=1*doza;
+      self.sexi:=1*doza;
+      ///////////////
+      end;
+
+      if namedrug='Леривон' then begin
+      hipertim:=3;
+      sedat:=3;
+      doza:=doza/35;
+      ///////////////
+      self.adrenolit:=4*doza;
+      self.holinolit:=1*doza;
+      self.sexi:=1*doza;
+      ///////////////
+      end;
+
+      if namedrug='Амитриптилин' then begin
+      hipertim:=4;
+      sedat:=5;
+      doza:=doza/100;
+      ///////////////
+      self.adrenolit:=4*doza;
+      self.holinolit:=6*doza;
+      self.sexi:=1*doza;
+      ///////////////
+      end;
+
+    self.hyper_hypostesia_anestesia:=Round(-DEISTVIE*doza);
+    self.senestopatia:=Round(-DEISTVIE*doza);
+    self.hallutination_true:=Round(-DEISTVIE*doza);
+    self.hallutination_false:=Round(-DEISTVIE*doza);
+    // мышление
+    self.hyper_hypomentzia:=Round(OS_EFFECT*doza);
+    self.rigidnost:=Round(-EFFECT*doza);
+    self.obstoyatelnost:=Round(-DEISTVIE*doza);
+    self.rezonerstvo:=Round(DEISTVIE*doza);
+    self.obsesion_compulsion:=Round(-OS_EFFECT*doza);
+    self.sverhcenniost:=Round(-DEISTVIE*doza);
+     // память и интеллект
+    self.hyper_hypomnesia:=Round(DEISTVIE*doza);
+    self.amnesia_fiks:=Round(-DEISTVIE*doza);
+    // эмоции
+    self.hyper_hypotimia:=Round(OS_EFFECT*doza);
+    self.hyperpatia_apatia:=Round(OS_EFFECT*doza);
+    self.trevoga_spocoistvie:=Round(-EFFECT*doza);
+    self.eiforia_disforia:=Round(-EFFECT*doza);
+    self.emotion_labilnost:=Round(-EFFECT*doza);
+    // воля и активность
+    self.hyper_hypobulia:=Round(EFFECT*doza);
+    self.vozbugdenie_stupor:=Round(EFFECT*doza);
+
+//////////////////////индивид особенности препарата/////////////////////////////
+//      hipertim                                                              //
+//      sedat                                                                 //
+////////////////////////////////////////////////////////////////////////////////
+
+    self.hyper_hypostesia_anestesia:=Round(self.hyper_hypostesia_anestesia*sedat);
+    self.senestopatia:=Round(self.senestopatia*sedat);
+    self.hallutination_true:=Round(self.hallutination_false*sedat);
+    self.hallutination_false:=Round(self.hallutination_false*sedat);
+    // мышление
+    self.hyper_hypomentzia:=self.hyper_hypomentzia*hipertim;
+    self.rigidnost:=Round(self.rigidnost*(hipertim*sedat/2));
+    self.obstoyatelnost:=self.obstoyatelnost*hipertim;
+    self.rezonerstvo:=self.rezonerstvo*hipertim;
+    self.obsesion_compulsion:=self.obsesion_compulsion*hipertim;
+    self.sverhcenniost:=Round(self.sverhcenniost*sedat);
+     // память и интеллект
+    self.hyper_hypomnesia:=Round(self.hyper_hypomnesia*(hipertim*sedat/2));
+    self.amnesia_fiks:=self.amnesia_fiks*hipertim;
+    // эмоции
+    self.hyper_hypotimia:=self.hyper_hypotimia*hipertim;
+    self.hyperpatia_apatia:=Round(self.hyperpatia_apatia*hipertim);
+    self.trevoga_spocoistvie:=Round(self.trevoga_spocoistvie*sedat);
+    self.eiforia_disforia:=Round(self.eiforia_disforia*sedat);
+    self.emotion_labilnost:=Round(self.emotion_labilnost*sedat);
+    // воля и активность
+    self.hyper_hypobulia:=Round(self.hyper_hypobulia*hipertim);
+    self.vozbugdenie_stupor:=Round(self.vozbugdenie_stupor*hipertim);
+   end;
+
+   procedure TDrug.CreateNootrop(namedrug: string; doza: Real);
+   const
+   DEISTVIE: integer = 2;
+   EFFECT: integer = 5;
+   OS_EFFECT: integer = 10;
+   var
+   noot, sedativ: real;
+   begin
+    CreateDrug;
+    group:='ноотроп';
+
+      if namedrug='Пирацетам' then begin
+      noot:=5;
+      sedativ:=-2;
+      doza:=doza/200;
+      ///////////////
+      self.holinolit:=-1*doza;
+      ///////////////
+      end;
+
+      if namedrug='Аминалон' then begin
+      noot:=3;
+      sedativ:=-1;
+      doza:=doza/150;
+      ///////////////
+      self.holinolit:=-0.5*doza;
+      ///////////////
+      end;
+
+      if namedrug='Глицин' then begin
+      noot:=2;
+      sedativ:=1;
+      doza:=doza/200;
+      ///////////////
+      self.holinolit:=-0.5*doza;
+      ///////////////
+      end;
+
+      if namedrug='Пантогам' then begin
+      noot:=3;
+      sedativ:=2;
+      doza:=doza/200;
+      ///////////////
+      self.holinolit:=-1*doza;
+      ///////////////
+      end;
+
+      if namedrug='Фенибут' then begin
+      noot:=3;
+      sedativ:=3;
+      doza:=doza/100;
+      ///////////////
+      self.holinolit:=-1*doza;
+      ///////////////
+      end;
+
+      if namedrug='Церебролизин' then begin
+      noot:=4;
+      sedativ:=-1;
+      doza:=doza/20;
+      ///////////////
+      self.holinolit:=-1*doza;
+      ///////////////
+      end;
+
+    self.name:=namedrug;
+
+    self.hyper_hypostesia_anestesia:=Round(-DEISTVIE*doza);
+    self.hyper_hypomentzia:=Round(DEISTVIE*doza);
+    self.obsesion_compulsion:=Round(-DEISTVIE*doza);
+    self.trevoga_spocoistvie:=Round(-EFFECT*doza);
+    self.emotion_labilnost:=Round(-DEISTVIE*doza);
+    self.eiforia_disforia:=Round(-DEISTVIE*doza);
+    self.hyper_hypobulia:=Round(-DEISTVIE*doza);
+    self.vozbugdenie_stupor:=Round(-DEISTVIE*doza);
+
+
+    self.hyper_hypomnesia:=Round(EFFECT*doza);
+    self.amnesia_retro:=Round(-OS_EFFECT*doza);
+    self.amnesia_antero:=Round(-OS_EFFECT*doza);
+    self.amnesia_congrad:=Round(-OS_EFFECT*doza);
+    self.amnesia_fiks:=Round(-OS_EFFECT*doza);
+    self.pseudoreminiscencii:=Round(-OS_EFFECT*doza);
+    self.confabulacii:=Round(-OS_EFFECT*doza);
+    self.cryptomnesii:=Round(-OS_EFFECT*doza);
+    self.rigidnost:=Round(-EFFECT*doza);
+    self.obstoyatelnost:=Round(-EFFECT*doza);
+
+//////////////////////индивид особенности препарата/////////////////////////////
+//   noot   sedativ
+////////////////////////////////////////////////////////////////////////////////
+
+    self.hyper_hypostesia_anestesia:=Round(self.hyper_hypostesia_anestesia*sedativ);
+    self.hyper_hypomentzia:=Round(self.hyper_hypomentzia*noot);
+    self.obsesion_compulsion:=Round(self.obsesion_compulsion*sedativ);
+    self.trevoga_spocoistvie:=Round(self.trevoga_spocoistvie*sedativ);
+    self.emotion_labilnost:=Round(self.emotion_labilnost*sedativ);
+    self.eiforia_disforia:=Round(self.eiforia_disforia*sedativ);
+    self.hyper_hypobulia:=Round(self.hyper_hypobulia*sedativ);
+    self.vozbugdenie_stupor:=Round(self.vozbugdenie_stupor*sedativ);
+
+    self.hyper_hypomnesia:=Round(self.hyper_hypomnesia*noot);
+    self.amnesia_retro:=Round(self.amnesia_retro*noot);
+    self.amnesia_antero:=Round(self.amnesia_antero*noot);
+    self.amnesia_congrad:=Round(self.amnesia_congrad*noot);
+    self.amnesia_fiks:=Round(self.amnesia_fiks*noot);
+    self.pseudoreminiscencii:=Round(self.pseudoreminiscencii*noot);
+    self.confabulacii:=Round(self.confabulacii*noot);
+    self.cryptomnesii:=Round(self.cryptomnesii*noot);
+
+    self.rigidnost:=Round(self.rigidnost*noot);
+    self.obstoyatelnost:=Round(self.obstoyatelnost*noot);
+
+   end;
+
+end.

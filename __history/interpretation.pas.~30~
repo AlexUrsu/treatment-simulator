@@ -1,0 +1,425 @@
+unit interpretation;
+
+interface
+
+uses Pacient, SysUtils;
+
+ function ShowPsiStatus(Pacient: THuman): string;
+
+ function ShowVospr(Pacient: THuman): string;
+ function ShowMishl(Pacient: THuman): string;
+ function ShowIntellect(Pacient: THuman): string;
+ function ShowEmotion(Pacient: THuman): string;
+ function ShowVolya(Pacient: THuman): string;
+ function ShowPobEffect(Pacient: THuman): string;
+
+implementation
+ function ShowPsiStatus(Pacient: THuman): string;
+ begin
+ result:=ShowVospr(Pacient)+ShowMishl(Pacient)+ShowVolya(Pacient)+ShowEmotion(Pacient)+ShowIntellect(Pacient)+ShowPobEffect(Pacient);
+ end;
+
+ function ShowVospr(Pacient: THuman): string;
+ var
+  hstesia, pstesia, spatia, illusion, thall, fhall, dreal, dperson: string;
+ begin
+    case Pacient.hyper_hypostesia_anestesia of
+      -2000..-601: hstesia:='Пациент не реагирует на какие-либо раздражители наблюдается остановка дыхания. ';
+      -600..-451: hstesia:='Пациент не реагирует на какие-либо раздражители. ';
+      -450..-151: hstesia:='Пациент реагирует только на тормошение и болевые раздражители. ';
+      -150..-71: hstesia:='Пациент реагирует только на громкую речь и тормошение. ';
+      -70..-31: hstesia:='Пациент говорит о том, что мир стал каким-то тусклым, звуки приглушенными, пища не такой вкусной и все вокруг как-бы отдаляется. ';
+      -30..30: hstesia:='';
+      31..70: hstesia:='Пациент говорит, что стал вздрагивать из-за того, что обычные звуки стали казаться резкими и громкими. ';
+      71..500: hstesia:='Пациенту кажестя, что свет стал очень ярким, звуки громкими а некоторые запахи просто невыносимыми. ';
+    end;
+    case Pacient.parestesia of
+      -30..30: pstesia:='';
+      31..70: pstesia:='Иногда отмечает неприятное покалывание в конечностях. ';
+      71..500: pstesia:='Отмечает очень выраженное нестерпимое покалывание в конечносях. ';
+    end;
+    case Pacient.senestopatia of
+      -30..30: spatia:='';
+      31..50: spatia:='Жалуется на неприятные ощущения в теле, которые не может никак описать. ';
+      51..150: spatia:='Жалуется на очень выраженные тягосные и неприятные ощущения в теле, которые не может точно охарактеризовать. ';
+    end;
+    case Pacient.illusions of
+      -30..30: illusion:='';
+      31..50: illusion:='Говорит, что в шуме толпы иногда кажется, что то зазвонил мобильный телефон, то кто-то его окрикнул по имени. ';
+      51..70: illusion:='Говорит, что в полутемной комнате иногда какая-то вещь воспринимается как человек и какое-то время кажется, что в доме кто-то есть. ';
+      71..500: illusion:='C удивлением разглядывает стену, говорит что на стене рисунок меняется, превращается в какие-то рожи и чертей. ';
+    end;
+    case Pacient.hallutination_true of
+      -30..30: thall:='';
+      31..70: thall:='Оглядывается по сторонам, смотрит в пространство где явно ничего нет, но он при этом внимательно за чем-то следит. ';
+      71..500: thall:='Отвлекается, смотрит куда-то в сторону, с кем-то разговаривает, ругается и угрожает ему. ';
+    end;
+    case Pacient.hallutination_false of
+      -30..30: fhall:='';
+      31..70: fhall:='Во время беседы пациент периодически отвлекается и перестает слышать врача, при этом видно, что он к чему-то прислушивается и погружается в мир собственных переживаний. ';
+      71..500: fhall:='Удивлен тем, что слышит в голове чью-то речь и перед внутренним взором сами по себе возникают какие-то изображения. ';
+    end;
+    case Pacient.derealisacia of
+      -30..30: dreal:='';
+      31..70: dreal:='Говорит, что мир как-то изменился, хотя звуки, цвета и формы остались прежними. ';
+      71..500: dreal:='Говорит, что мир изменился, стал каким-то исскуственным. В нем нет жизни, он как хоршая подделка, которая только выглядит как оригинал. ';
+    end;
+    case Pacient.depersonalisacia of
+      -30..30: dperson:='';
+      31..70: dperson:='Говорит, что ему кажестя, что он стал каким-то другим. ';
+      71..500: dperson:='Уверен, что стал каким-то другим - исскуственным как робот. ';
+    end;
+    result:=hstesia+pstesia+spatia+illusion+thall+fhall+dreal+dperson;
+ end;
+
+ function ShowMishl(Pacient: THuman): string;
+ var
+ hmenzia, bsvaz, rigidnost, obstoyat, paralogichnost, obsesion_compulsion, sverhcenniost, bred_sistema, avtomatizm: string;
+ tema_idei: string;
+ begin
+
+    case Pacient.hyper_hypomentzia of
+      -300..-151: hmenzia:='При неоднократном повторении вопроса, иногда дает односложный ответ. ';
+      -150..-101: hmenzia:='Отвечает на вопросы односложно. Нередко, чтобы получить ответ, вопрос нужно повторить несколько раз. ';
+      -100..-71: hmenzia:='Задумчив и немногословен. На вопросы отвечает коротко и не сразу. ';
+      -70..-41: hmenzia:='Задумчив, не сразу отвечает на вопросы. ';
+      -40..40: hmenzia:='';
+      41..70: hmenzia:='Охотно вступает в беседу. ';
+      71..150: hmenzia:='Многоречив, отвечает на вопросы не дослушав их до конца, постоянно перебивает врача. ';
+      151..250: hmenzia:='Крайне многоречив, говорит быстро и гормко. Речь переходит в монолог. ';
+      251..500: hmenzia:='Крайне многоречив, никого не слушает, очень быстро говорит не успевает договаривать до конца слова и предложения, кричит. ';
+    end;
+    case Pacient.bessvaznost of
+      -30..30: bsvaz:='';
+      31..70: bsvaz:='Иногда не может четко сформулировать свою мысль и подобрать нужные слова. ';
+      71..150: bsvaz:='Высказывает отрывочные бессмысленные слова, фразы и предложения. ';
+      151..500: bsvaz:='';
+    end;
+    if Pacient.vozbugdenie_stupor>-70 then begin
+      case Pacient.rigidnost of
+        -500..-71: rigidnost:='Не может длительно сосредоточиться на разговоре поскольку быстро переключается с одной темы на другую. ';
+        -70..-41: rigidnost:='Периодически отвлекается и переключается с одной темы на другую. ';
+        -40..40: rigidnost:='';
+        41..50: rigidnost:='С трудом переключается с одной темы разговора на другую. ';
+        51..70: begin
+        if Pacient.eiforia_disforia>70 then
+        rigidnost:='Не может переключиться с одной темы беседы на другую, разражается из-за того, что врач его перебивает и не хочет выслушать. '
+        else rigidnost:='Не может переключиться с одной темы беседы на другую. ';
+        end;
+        71..150: rigidnost:='Не может сосредоточиться на задаваемых вопросах. ';
+        151..500: rigidnost:='';
+      end;
+    end;
+    if Pacient.hyper_hypomentzia>-30 then begin
+      case Pacient.obstoyatelnost of
+        -30..30: obstoyat:='';
+        31..50:  obstoyat:='Подробно излагает жалобы. ';
+        51..70:  if Pacient.vozbugdenie_stupor>-70 then obstoyat:='Подробно во всех деталях излагает жалобы, концентриуясь на несущественных мелочах. ';
+        71..100: if Pacient.vozbugdenie_stupor>-70 then obstoyat:='Очень подробно во всех деталях излагает жалобы, концентриуясь на несущественных мелочах. ';
+      end;
+    end;
+    case Pacient.paralogichnost of
+      -30..30: paralogichnost:='';
+      31..70: paralogichnost:='Периодически высказывает идеи которые трактует по своему, игнорируя некоторые логические несоответствия, которые считает несущественными. ';
+      71..500: paralogichnost:='Высказывает оригинальные идеи, которые порой не поддаются логическому объяснению. ';
+    end;
+    case Pacient.obsesion_compulsion of
+      -30..30: obsesion_compulsion:='';
+      31..50: obsesion_compulsion:='Говорит, что иногда возникают плохие мысли и желания. ';
+      51..70: obsesion_compulsion:='Говорит, что периодически возникают плохие мысли и желания, с которыми приходится бороться, чтобы их не воплотить в жизнь. ';
+      71..500: obsesion_compulsion:='Говорит, что постоянно его мучают плохие мысли и желания, с которыми очень трудно бороться. ';
+// желания и действия отдельно?
+    end;
+    case Pacient.sverhcenniost of
+      -500..-31: sverhcenniost:='';
+//      -150..-71: sverhcenniost:='Пациента пугают эти мысли, уверен в том, что это правда. ';
+//      -70..-31: sverhcenniost:='Пациент обеспокоен этими мыслями, говорит, что хочет от них избавиться. ';
+      -30..30: sverhcenniost:='';
+      31..70: sverhcenniost:='Считает свои идеи важными и неохотно соглашается с тем, что он может быть не прав. ';
+      71..500: sverhcenniost:='Пациент увлечен своей идеей и полностью убежден в том, что она верна. ';
+    end;
+    case Pacient.bred_sistema of
+      -500..-31: bred_sistema:='';
+ //     -150..-71: bred_sistema:='Рассказывая о своих переживаниях, не может объяснить почему пришел к таким выводам. ';
+ //     -70..-31: bred_sistema:='Порой не может рационально объяснить почему у него возникают такие идеи. ';
+      -30..30: bred_sistema:='';
+      31..70: bred_sistema:='Рассказывая о своих мыслях, стремится логически их как-то объяснить. ';
+      71..500: bred_sistema:='Пациент детально излагает свою идею, приводя множество доказательств своим мыслям. ';
+    end;
+    case Pacient.avtomatizm of
+      -30..30: avtomatizm:='';
+      31..50: avtomatizm:='Говорит, что иногда возникает спонтанный поток или обрыв мыслей. ';
+      51..70: avtomatizm:='Говорит, что иногда возникают чужие мысли, как-будто кто-то вкладывает их в голову. ';
+      71..150: avtomatizm:='Говорит, что ему в голову кто-то вкладывает чужие мысли, пытается управлять его действиями. ';
+      151..500: avtomatizm:='Говорит, что ему в голову кто-то вкладывает чужие мысли, стирает память, создает эмоции и управляет действиями. ';
+    end;
+    tema_idei:='';
+//    if (Pacient.hyper_hypotimia<-70) and (Pacient.hyper_hypotimia>-150)  then
+//    tema_idei:=tema_idei+'Уверен в том, что в жизни у него все плохо и что сам он ничего из себя не представляет. ';
+    if Pacient.hyper_hypotimia>70 then
+    tema_idei:=tema_idei+'Уверен, что он очень способный человек, который может преодолеть любые жизненные трудности. ';
+    if (Pacient.hyperpatia_apatia<-100) and (Pacient.hyperpatia_apatia>-150)
+      and (Pacient.vozbugdenie_stupor>-70) and (Pacient.hyper_hypotimia<-70) then
+    tema_idei:=tema_idei+'Считает, что нет в жизни какого-то смысла, т.к. на самом деле ничего не имеет значения. ';
+//    if Pacient.obsesion_compulsion>50 then
+//    tema_idei:=tema_idei+'';
+//    if Pacient.trevoga_spocoistvie>50 then
+//    tema_idei:=tema_idei+'';
+//    if Pacient.senestopatia>50 then
+//    tema_idei:=tema_idei+'';
+//    if Pacient.avtomatizm>50 then
+//    tema_idei:=tema_idei+'';
+
+    //Паранойяльные
+//    if (Pacient.bred_sistema>50) and (Pacient.sverhcenniost>50) then
+//    tema_idei:=tema_idei+'';
+    //Персекуторные
+    if (Pacient.bred_sistema>70) and (Pacient.trevoga_spocoistvie>70) then
+    tema_idei:=tema_idei+'Считает, что за ним следят какие-то люди. Предполагает, что они его хотят убить. ';
+//    if (Pacient.hallutination_true>50) and (Pacient.trevoga_spocoistvie>50) then
+//    tema_idei:=tema_idei+'';
+
+    //Галлюцинаторно-паранойдные
+//    if (Pacient.hallutination_false>50) and (Pacient.bred_sistema<-50) and (Pacient.sverhcenniost>50) then
+//    tema_idei:=tema_idei+'';
+{
+
+    self.rezonerstvo:=0;
+    self.mentizm:=0;
+    self.shperrung:=0;
+
+    tema_idei: string;        // содержание идей
+}
+
+ result:=hmenzia+bsvaz+rigidnost+obstoyat+paralogichnost+obsesion_compulsion+avtomatizm+tema_idei+bred_sistema+sverhcenniost;
+
+ end;
+
+ function ShowIntellect(Pacient: THuman): string;
+ var
+ hyper_hypomnesia, intellect, amnesia_fiks, pseudoreminiscencii, confabulacii: string;
+ begin
+  if Pacient.vozbugdenie_stupor>-150 then begin
+    case Pacient.hyper_hypomnesia of
+      -500..-151: hyper_hypomnesia:='Не помнит событий недавнего прошлого, но иногда вспоминает некоторые собыития из детсва. ';
+      -150..-71: hyper_hypomnesia:='Пациент предъявляет жалбы на ухудшение памяти, говорит что стал забывать события недавнего прошлого. ';
+      -70..-31: hyper_hypomnesia:='Отмечает рассеянность. Говорит, что стал хуже запоминать новый материал. ';
+      -30..30: hyper_hypomnesia:='';
+      51..100: hyper_hypomnesia:='Отмечает ясность памяти и легкость возникновения воспоминаний. ';
+      101..500: hyper_hypomnesia:='Пациент легко вспоминает стихи, песни, охотно рассказывает о своей жизни. ';
+    end;
+    case Pacient.amnesia_fiks of
+      -500..-71: amnesia_fiks:='';
+      -70..-31: amnesia_fiks:='';
+      -30..30: amnesia_fiks:='';
+      31..70: amnesia_fiks:='Не может сразу запомнить информацию, поэтому неоднократно задает одни и те же вопросы. ';
+      71..500: amnesia_fiks:='Пациент практически сразу забывает то о чем спрашивал, поэтому через некоторое время опять повторяет один и тот же вопрос. ';
+    end;
+
+    case Pacient.pseudoreminiscencii of
+      -500..-71: pseudoreminiscencii:='';
+      -70..-31: pseudoreminiscencii:='';
+      -30..30: pseudoreminiscencii:='';
+      31..70: pseudoreminiscencii:='Говоря о своей жизни пациент иногда путает хронологию событий. ';
+      71..500: pseudoreminiscencii:='Пациент постоянно путает последовательность событий. Утвержает что вчера было то событие, которое объективно было совсем в дургое время. ';
+    end;
+
+    case Pacient.confabulacii of
+      -500..-71: confabulacii:='';
+      -70..-31: confabulacii:='';
+      -30..30: confabulacii:='';
+      31..70: confabulacii:='Рассказывая о своей жизни, иногда говорит о событиях, которых на самом деле не было. ';
+      71..500: confabulacii:='Постоянно рассказывает об удивительных событиях из его жизни, которых объективно не было. ';
+    end;
+  end;
+ //   intellect:='IQ = '+IntToStr(Pacient.intellect)+'. ';
+
+ {
+    self.amnesia_retro:=0;
+    self.amnesia_antero:=0;
+    self.amnesia_congrad:=0;
+    self.cryptomnesii:=0;
+ }
+ /////////////////////////////////////////////////
+ result:= hyper_hypomnesia+amnesia_fiks+pseudoreminiscencii+confabulacii;
+ ////////////////////////////////////////////////
+ end;
+ function ShowEmotion(Pacient: THuman): string;
+ var
+ hyper_hypotimia, hyperpatia_apatia, trevoga_spocoistvie, eiforia_disforia, emotion_labilnost: string;
+ emo_uploshenie: string;
+ begin
+    if Pacient.vozbugdenie_stupor>-150 then begin
+      case Pacient.hyper_hypotimia of
+         -350..-251: hyper_hypotimia:='На фоне тоски и подавленного настроения пациент совершил суицидальную попытку. ';
+        -250..-151: hyper_hypotimia:='Предъявлет жалобы на невыносимо плохое настроение и желании покончить жизнь самоубийством. ';
+        -150..-71: hyper_hypotimia:='Предъявлет жалобы на плохое настроение, чувство тоски, безвыходности и мысли о самоубийстве. ';
+        -70..-51: hyper_hypotimia:='Предъявляет жалобы на плохое настроение и периодически возникающие мысли о самоубийстве. ';
+        -50..-31: hyper_hypotimia:='Предъявляет жалобы на сниженное настроение. ';
+        -30..30: hyper_hypotimia:='';
+        31..70: hyper_hypotimia:='Пациент бодр, весел и жизнерадостен, говорит, что чувствует себя хорошо. ';
+        71..500: hyper_hypotimia:='Пациент чему-то очень радуется, смеется, всем улыбается, шутит, пляшет и поет. Говорит, что чувствует себя превосходно. ';
+      end;
+    case Pacient.hyperpatia_apatia of
+      -500..-71: hyperpatia_apatia:='Говорит, что хочет полежать, не хочет что-либо делать. ';
+      -70..-51: hyperpatia_apatia:='Отмечает общую слабость, упадок сил. ';
+      -50..-31: hyperpatia_apatia:='Говорит что устал и хочет отдохнуть. ';
+      -30..30: hyperpatia_apatia:='';
+      31..50: hyperpatia_apatia:='Отмечает прилив сил и энергии. ';       {}
+      51..90: hyperpatia_apatia:='Повышена деятельность и инициативность. ';
+      91..500: hyperpatia_apatia:='Очень повышена деятельность и инициативность. '; {}
+    end;
+    case Pacient.trevoga_spocoistvie of
+      -350..-201: trevoga_spocoistvie:='Отмечает приятное чувство полного умиротворения и спокойствия. ';
+      -200..-101: trevoga_spocoistvie:='Отмечает приятное чувство умиротворения, спокойствия и расслабления. ';
+      -100..-31: trevoga_spocoistvie:='Отмечает приятное чувство спокойствия и расслабление. ';
+      -30..30: trevoga_spocoistvie:='';
+      31..70: trevoga_spocoistvie:='Периодически испытывает чувство тревоги. ';
+      71..500: begin
+      if Pacient.hyper_hypotimia<-50 then
+      trevoga_spocoistvie:='Отмечает выраженное беспокойство. Говорит, что есть педчувствие какой-то беды, что что-то плохое должно случиться. '
+      else
+      trevoga_spocoistvie:='Отмечает выраженное беспокойство. ';
+      end;
+    end;
+    case Pacient.eiforia_disforia of
+      -500..-71: eiforia_disforia:='';
+      -70..-31: eiforia_disforia:='Пациент дружелюбен и благодушен. ';
+      -30..30: eiforia_disforia:='';
+      31..70: eiforia_disforia:='Некоторые замечания вызывают у пациента возмущение и протест. ';
+      71..500: eiforia_disforia:='По незначительному поводу легко раздражается и повышает голос. ';
+    end;
+    case Pacient.emotion_labilnost of
+      -500..-71: emotion_labilnost:='';
+      -70..-31: emotion_labilnost:='';
+      -30..30: emotion_labilnost:='';
+      31..70: if Pacient.hyper_hypotimia>-70 then emotion_labilnost:='В зависимости от темы разговора иногда начинает то плакать, то улыбаться. ';
+      71..500: if Pacient.hyper_hypotimia>-50 then emotion_labilnost:='В беседе по малейшему поводу плачет, но через некоторое время уже улыбается. ';
+    end;
+    case Pacient.emo_uploshenie of
+      -500..-71: emo_uploshenie:='';
+      -70..-31: emo_uploshenie:='';
+      -30..30: emo_uploshenie:='';
+      31..70: emo_uploshenie:='';
+      71..500: emo_uploshenie:='';
+    end;
+    end;
+{
+    self.ammbivalentnost:=0;
+    self.anestezia_psihica:=0;
+}
+ result:=hyper_hypotimia+hyperpatia_apatia+trevoga_spocoistvie+eiforia_disforia+emotion_labilnost+emo_uploshenie;
+
+ end;
+ function ShowVolya(Pacient: THuman): string;
+ var
+ hyper_hypobulia, vozbugdenie_stupor: string;
+ begin
+ if Pacient.vozbugdenie_stupor>-150 then begin
+    case Pacient.hyper_hypobulia of
+      -500..-151: hyper_hypobulia:='';
+      -150..-71: hyper_hypobulia:='Отмечает выраженное снижение интереса к жизни, нежелание что-либо делать. ';
+      -70..-51: hyper_hypobulia:='Отмечает скуку и лень. ';
+      -50..-31: hyper_hypobulia:='Отмечает снижение интереса к повседневным делам. ';
+      -30..30: hyper_hypobulia:='';
+      31..50: hyper_hypobulia:='Отмечает внутренний подъем и желание заняться какими-то новыми делами. ';
+      51..70: hyper_hypobulia:='Отмечает прилив сил и энергии, есть много планов и дел. ';
+      71..500: hyper_hypobulia:='Отмечает выраженный прилив сил, разнообразных желаний в том числе и сексуального плана. ';
+    end;
+ end;
+     case Pacient.vozbugdenie_stupor of
+     -600..-301: vozbugdenie_stupor:='Постоянно спит. ';
+     -300..-151: vozbugdenie_stupor:='Предоставленный сам себе ложится спать. ';
+      -150..-71: vozbugdenie_stupor:='Заторможен, сонлив. ';
+      -70..-31: vozbugdenie_stupor:='Медлителен, вял. ';
+      -30..30: vozbugdenie_stupor:='';
+      31..50: vozbugdenie_stupor:='Непоседлив и суетлив. ';
+      51..70: vozbugdenie_stupor:='Не может долго усидеть на месте, обильно жестикулирует. ';
+      71..500: vozbugdenie_stupor:='Громко говорит, постоянно двигается, размахивает руками. ';
+    end;
+
+{
+    self.katatonia:=false;
+    self.hyper_oglushenie_sopor_coma:=0;
+}
+
+ result:= hyper_hypobulia+vozbugdenie_stupor;
+ end;
+
+
+  function ShowPobEffect(Pacient: THuman): string;
+  var
+  mx_effect, ad_effect, sex_effect, park_effect, hykinez_effect, dykinez_effect: string;
+  begin
+   {
+  parkinson: real;
+  hyperkinez: real;
+  dyskinez: real;
+  adrenolit: real;
+  holinolit: real;
+  endo: real;
+  sexi: real;
+  }
+ if Pacient.vozbugdenie_stupor>-150 then begin
+  case Round(Pacient.parkinson) of
+    0..5: park_effect:='';
+    6..10: park_effect:='Наблюдается легкая общая скованность, бедность мимики. ';
+    11..20: park_effect:='Наблюдается умеренная общая скованность, бедность и замедленность мимических и моторных проявлений, гиперсаливация и потливость. ';
+    21..50: park_effect:='Наблюдается выраженная общая скованность и замедленность движений, бедность мимики, выраженная гиперсаливация, потливость и себорея. ';
+  end;
+  case Round(Pacient.hyperkinez) of
+    0..5: hykinez_effect:='';
+    6..10: hykinez_effect:='Наблюдается легкий тремор. ';
+    11..20: hykinez_effect:='Наблюдается умеренный тремор и периодически миоклонии. ';
+    21..50: hykinez_effect:='Наблюдается выраженный тремор и миоклонии. ';
+  end;  
+  case Round(Pacient.dyskinez) of
+    0..5: dykinez_effect:='';
+    6..10: dykinez_effect:='Иногда возникают окулогирные кризы. ';
+    11..20: dykinez_effect:='Периодически возникают окулогирные кризы и торсионные спазмы. ';
+    21..50: dykinez_effect:='Наблюдается синдром Куленкамфа-Тарноваб торсионные спазмы и кризы генерализованного возбуждения. ';
+  end;
+  
+  case Round(Pacient.holinolit) of
+    0..5: mx_effect:='';
+    6..10: mx_effect:='Отмечает сухость во рту, задержку стула и потливость. ';
+    11..20: mx_effect:='Отмечает выраженную сухость во рту, задержку мочеиспускания и запор, усиленное потоотделение. Наблюдается парез аккомодации и повышение внутриглазного давления. ';
+    21..50: mx_effect:='Наблюдается задержка мочеиспускания, выраженная потливость, тахикардия, парез аккомодации, повышение внутриглазного давления, спутанность сознания, дезориенировка, тревога и галлюцинации. ';
+  end;
+  case Round(Pacient.adrenolit) of
+    0..5: ad_effect:='';
+    6..10: ad_effect:='Отмечает легкое головокружение при резком вставании. ';
+    11..20: ad_effect:='Отмечает головокружение и общую слабость. ';
+    21..50: ad_effect:='Наблюдается выраженное падение артериального давления, слабость и головокружение. ';
+  end;
+
+  case Round(Pacient.sexi) of
+    0..5: sex_effect:='';
+    6..10: sex_effect:='Отмечает незначительные сексуальные дисфункции. ';
+    11..20: sex_effect:='Отмечает явные сексуальные расстройства. ';
+    21..50: sex_effect:='Наблюдается выраженное нарушение сексуальной функции. ';
+  end;
+
+ end;
+  result:=park_effect+hykinez_effect+dykinez_effect+mx_effect+ad_effect+sex_effect;
+  end;
+
+{
+
+
+Со стороны нервной системы и органов чувств: головная боль, головокружение, атаксия, повышенная утомляемость, слабость, раздражительность, сонливость, инсомния, кошмарные сновидения, двигательное возбуждение, тремор, парестезия, периферическая нейропатия, изменения на ЭЭГ, нарушение концентрации внимания, дизартрия, спутанность сознания, галлюцинации, шум в ушах.
+
+Со стороны сердечно-сосудистой системы: тахикардия, ортостатическая гипотензия, аритмия, лабильность АД, расширение комплекса QRS на ЭКГ (нарушение внутрижелудочковой проводимости), симптомы сердечной недостаточности, обморок, изменение картины крови, в т.ч. агранулоцитоз, лейкопения, эозинофилия, тромбоцитопения, пурпура.
+
+Со стороны органов ЖКТ: тошнота, рвота, изжога, анорексия, ощущение дискомфорта в эпигастрии, гастралгия, повышение активности печеночных трансаминаз, стоматит, нарушение вкуса, потемнение языка.
+
+Со стороны обмена веществ: галакторея, изменение секреции АДГ; редко — гипо- или гипергликемия, нарушение толерантности к глюкозе.
+
+Со стороны мочеполовой системы: изменение либидо, потенции, отек яичек, глюкозурия, поллакиурия.
+
+Аллергические реакции: кожная сыпь, зуд, ангионевротический отек, крапивница.
+
+Прочие: увеличение размеров молочных желез у женщин и мужчин, выпадение волос, увеличение лимфатических узлов, фотосенсибилизация, повышение массы тела (при длительном применении), синдром отмены: головная боль, тошнота, рвота, диарея, раздражительность, нарушение сна с яркими, необычными сновидениями, повышенная возбудимость (после длительного лечения, особенно в высоких дозах, при резком прекращении приема препарата).
+}
+
+end.

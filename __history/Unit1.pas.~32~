@@ -1,0 +1,686 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Pacient, drug, interpretation, diseases, Unit3, Grids,
+  Menus, ExtCtrls;
+
+type
+  TForm1 = class(TForm)
+    Memo1: TMemo;
+    Button2: TButton;
+    Label1: TLabel;
+    StringGrid1: TStringGrid;
+    Label2: TLabel;
+    PopupMenu1: TPopupMenu;
+    Edit1: TEdit;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    N6: TMenuItem;
+    N7: TMenuItem;
+    N8: TMenuItem;
+    N10: TMenuItem;
+    N11: TMenuItem;
+    N12: TMenuItem;
+    N13: TMenuItem;
+    N14: TMenuItem;
+    N15: TMenuItem;
+    Edit2: TEdit;
+    PopupMenu2: TPopupMenu;
+    Num1: TMenuItem;
+    N16: TMenuItem;
+    N17: TMenuItem;
+    N18: TMenuItem;
+    N19: TMenuItem;
+    N20: TMenuItem;
+    N21: TMenuItem;
+    Edit3: TEdit;
+    PopupMenu3: TPopupMenu;
+    N22: TMenuItem;
+    Label3: TLabel;
+    PopupMenu4: TPopupMenu;
+    F01: TMenuItem;
+    F11: TMenuItem;
+    F21: TMenuItem;
+    F31: TMenuItem;
+    F41: TMenuItem;
+    F51: TMenuItem;
+    F61: TMenuItem;
+    F71: TMenuItem;
+    F81: TMenuItem;
+    F91: TMenuItem;
+    Label4: TLabel;
+    Label5: TLabel;
+    ComboBox1: TComboBox;
+    Edit4: TEdit;
+    ComboBox2: TComboBox;
+    Button4: TButton;
+    Label6: TLabel;
+    Button1: TButton;
+    N23: TMenuItem;
+    N24: TMenuItem;
+    N25: TMenuItem;
+    N26: TMenuItem;
+    N27: TMenuItem;
+    N28: TMenuItem;
+    N29: TMenuItem;
+    N30: TMenuItem;
+    N31: TMenuItem;
+    N32: TMenuItem;
+    N33: TMenuItem;
+    N34: TMenuItem;
+    N35: TMenuItem;
+    N36: TMenuItem;
+    N37: TMenuItem;
+    N38: TMenuItem;
+    N39: TMenuItem;
+    N40: TMenuItem;
+    N41: TMenuItem;
+    N42: TMenuItem;
+    N43: TMenuItem;
+    N44: TMenuItem;
+    N45: TMenuItem;
+    N46: TMenuItem;
+    N47: TMenuItem;
+    N48: TMenuItem;
+    N49: TMenuItem;
+    N50: TMenuItem;
+    N51: TMenuItem;
+    N52: TMenuItem;
+    N53: TMenuItem;
+    N9: TMenuItem;
+    N55: TMenuItem;
+    N56: TMenuItem;
+    N57: TMenuItem;
+    N58: TMenuItem;
+    N59: TMenuItem;
+    N60: TMenuItem;
+    N61: TMenuItem;
+    N62: TMenuItem;
+    N63: TMenuItem;
+    ComboBox3: TComboBox;
+    Button5: TButton;
+    Button6: TButton;
+    CheckBox1: TCheckBox;
+    procedure FormShow(Sender: TObject);
+    procedure StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
+    procedure Edit1Change(Sender: TObject);
+    procedure N16Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure ComboBox2Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button1Click(Sender: TObject);
+    procedure N17Click(Sender: TObject);
+    procedure N18Click(Sender: TObject);
+    procedure N19Click(Sender: TObject);
+    procedure N20Click(Sender: TObject);
+    procedure N21Click(Sender: TObject);
+    procedure Num1Click(Sender: TObject);
+    procedure N23Click(Sender: TObject);
+    procedure Edit2Change(Sender: TObject);
+    procedure N24Click(Sender: TObject);
+    procedure N25Click(Sender: TObject);
+    procedure N26Click(Sender: TObject);
+    procedure N27Click(Sender: TObject);
+    procedure N28Click(Sender: TObject);
+    procedure N29Click(Sender: TObject);
+    procedure N30Click(Sender: TObject);
+    procedure N31Click(Sender: TObject);
+    procedure N32Click(Sender: TObject);
+    procedure N33Click(Sender: TObject);
+    procedure N34Click(Sender: TObject);
+    procedure N35Click(Sender: TObject);
+    procedure N36Click(Sender: TObject);
+    procedure N37Click(Sender: TObject);
+    procedure N38Click(Sender: TObject);
+    procedure N39Click(Sender: TObject);
+    procedure N40Click(Sender: TObject);
+    procedure N41Click(Sender: TObject);
+    procedure N42Click(Sender: TObject);
+    procedure N43Click(Sender: TObject);
+    procedure N44Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure N45Click(Sender: TObject);
+    procedure N46Click(Sender: TObject);
+    procedure N47Click(Sender: TObject);
+    procedure N48Click(Sender: TObject);
+    procedure N49Click(Sender: TObject);
+    procedure N50Click(Sender: TObject);
+    procedure N51Click(Sender: TObject);
+    procedure N52Click(Sender: TObject);
+    procedure N53Click(Sender: TObject);
+    procedure N9Click(Sender: TObject);
+    procedure N54Click(Sender: TObject);
+    procedure N55Click(Sender: TObject);
+    procedure N56Click(Sender: TObject);
+    procedure N57Click(Sender: TObject);
+    procedure N58Click(Sender: TObject);
+    procedure N59Click(Sender: TObject);
+    procedure N60Click(Sender: TObject);
+    procedure N61Click(Sender: TObject);
+    procedure N63Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  Pacienti, BasisPacienti: THuman;
+  Drug: TDrug;
+  Sindrom: TSindrom;
+  VarSindroms: array[0..3] of string;
+
+implementation
+
+uses Unit4;
+
+
+{$R *.dfm}
+
+procedure GetDrugToPerson (Man: THuman; i: integer);
+begin
+  Drug:=TDrug.Create;
+  Drug.name:=Form1.StringGrid1.Cells[1, i];
+// если это известный нейролептик то создаем нейролептик
+  if (Drug.name='Аминазин') or (Drug.name='Тизерцин') or
+   (Drug.name='Галоперидол') or (Drug.name='Трифтазин') or (Drug.name='Циклодол') or
+   (Drug.name='Рисперидон') or (Drug.name='Азалептин') or
+   (Drug.name='Зипрекса') or (Drug.name='Неулептил') or (Drug.name='Сонапакс') or
+   (Drug.name='Мажептил') or (Drug.name='Эглонил') or (Drug.name='Хлорпротиксен') then
+    Drug.CreateNeuroleptik(Drug.name, StrToFloat(Form1.StringGrid1.Cells[2, i]));
+// если это известный транквилизатор то
+  if (Drug.name='Алпразолам') or (Drug.name='Грандаксин') or
+   (Drug.name='Диазепам') or (Drug.name='Клоназепам') or
+   (Drug.name='Нитразепам') or (Drug.name='Феназепам') then
+    Drug.CreateTancvilizator(Drug.name, StrToFloat(Form1.StringGrid1.Cells[2, i]));
+
+// если это известный адаптаген  то
+  if (Drug.name='Элеутерококк') or (Drug.name='Женьшень') or
+    (Drug.name='Настойка аралии') then
+    Drug.CreateAdaptagen(Drug.name, StrToFloat(Form1.StringGrid1.Cells[2, i]));
+
+// если это известный нормотимик то
+  if (Drug.name='Финлепсин') or (Drug.name='Лития карбонат') or
+    (Drug.name='Вальпроат натрия') then
+    Drug.CreateNormotimik(Drug.name, StrToFloat(Form1.StringGrid1.Cells[2, i]));
+
+// если это известный ноотроп то
+  if (Drug.name='Пирацетам') or (Drug.name='Аминалон') or
+     (Drug.name='Пантогам') or (Drug.name='Фенибут') or
+    (Drug.name='Глицин') or (Drug.name='Церебролизин') then
+    Drug.CreateNootrop(Drug.name, StrToFloat(Form1.StringGrid1.Cells[2, i]));
+
+// если это известный седатик то
+  if (Drug.name='Экстракт валерьяны') or
+    (Drug.name='Беллатаминал') or (Drug.name='Экстракт пустырника') then
+    Drug.CreateSedatik(Drug.name, StrToFloat(Form1.StringGrid1.Cells[2, i]));
+
+// если это известный антидепрессант
+  if (Drug.name='Сиднофен') or (Drug.name='Мелипрамин') or
+   (Drug.name='Флуоксетин') or (Drug.name='Аурорикс') or
+   (Drug.name='Анафранил') or (Drug.name='Паксил') or
+   (Drug.name='Людиомил') or (Drug.name='Флувоксамин') or
+   (Drug.name='Азафен') or (Drug.name='Леривон') or
+   (Drug.name='Амитриптилин') then
+    Drug.CreateAntidepressant(Drug.name, StrToFloat(Form1.StringGrid1.Cells[2, i]));
+
+  if Drug.name='Церебролизин' then
+    Form1.Memo1.Lines.Add(Drug.name+' '+Form1.StringGrid1.Cells[2, i]+' мл.')
+  else if (Drug.name='Элеутерококк') or (Drug.name='Женьшень') or
+    (Drug.name='Настойка аралии') then
+    Form1.Memo1.Lines.Add(Drug.name+' '+Form1.StringGrid1.Cells[2, i]+' кап.')
+  else if (Drug.name='Экстракт валерьяны') or (Drug.name='Беллатаминал') or
+    (Drug.name='Экстракт пустырника') then
+    Form1.Memo1.Lines.Add(Drug.name+' '+Form1.StringGrid1.Cells[2, i]+' таб.')
+  else
+  Form1.Memo1.Lines.Add(Drug.name+' '+Form1.StringGrid1.Cells[2, i]+' мг.');
+// лекарство пациенту
+// по идее если лекарств несколько то тогда надо бы их смешать сначала а потом пациенту
+// mix drug?     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  Man.DrugToPerson(Drug);
+  Drug.Free;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+i:integer;
+s: string;
+begin
+  Form1.Memo1.Lines.Add('  ------------------- День лечения № '+Form1.Label5.Caption+'---------------');
+  Pacienti.CopyPerson(BasisPacienti);
+  Form1.Memo1.Lines.Add('-----------------------------------------------------------------');
+  for i := 1 to 12 do begin
+    if StringGrid1.Cells[3, i]='Назначить' then
+     GetDrugToPerson(Pacienti, i);     // вот тут бы микс драг и пригодился бы
+  end;
+  Form1.Memo1.Lines.Add('-----------------------------------------------------------------');
+  s:=ShowPsiStatus(Pacienti);
+  if s<>'' then
+    Form1.Memo1.Lines.Add(s)
+    else
+    Form1.Memo1.Lines.Add('Поздравляю Вы полностью вылечили пациента!');
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+Button1.Click;
+Label5.Caption:=IntToStr(StrToInt(Label5.Caption)+1);
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+var
+i:integer;
+begin
+// Очищаем интерфейс
+  Memo1.Lines.Clear;
+  Label5.Caption:='1';
+  for i := 1 to 12 do begin
+    Form1.StringGrid1.Cells[1,i]:='';
+    Form1.StringGrid1.Cells[2,i]:='';
+    Form1.StringGrid1.Cells[3,i]:='';
+  end;
+
+
+  for i:= 0 to 3 do
+     VarSindroms[i]:='';
+// Создаем пациента
+  Form1.Button6.Click;
+  Form1.Label3.Caption:=BasisPacienti.ShowPerson;
+
+// генерируем болезнь на несколько случайных синдромов
+  Sindrom:=TSindrom.Create;
+  // to - это сепень сложности, т.к. определяет сколько синдромов замешивается
+  // сейчас - 2
+
+    for i := 0 to 1 do begin
+     Sindrom.CreateSindrom(ComboBox2.Items.Strings[random(12)], random(2)+1);
+     BasisPacienti.SindromToPerson(Sindrom);
+     VarSindroms[i]:=Sindrom.name; // записиываем в память названия синдромов
+    end;
+
+  Form1.Memo1.Lines.Add(Label3.Caption);
+  Form1.Memo1.Lines.Add('--------------------------------------------------------------------');
+  Form1.Memo1.Lines.Add('Психический статус:');
+  Form1.Memo1.Lines.Add(ShowPsiStatus(BasisPacienti));
+  Form1.Memo1.Lines.Add('--------------------------------------------------------------------');
+//  Form1.Memo1.Lines.Add('Характеристика:');
+//  Form1.Memo1.Lines.Add(BasisPacienti.ShowLicnost);
+//  Form1.Memo1.Lines.Add('--------------------------------------------------------------------');
+//  Pacienti.Free;
+//  Sindrom.Free;
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+var
+i:integer;
+Man: THuman;
+Disease: TSindrom;
+begin
+// генерируем болезнь
+  Disease:=TSindrom.Create;
+  Disease.CreateSindrom(ComboBox2.Text, StrToInt(ComboBox3.Text));
+  BasisPacienti.SindromToPerson(Disease);
+  Disease.Free;
+end;
+
+procedure TForm1.Button6Click(Sender: TObject);
+begin
+// создаем базовый 0 пси статус с личностными особенностями
+// копируем в пациента котрого будем за тем лечить
+// базовый нужен на след день лечения при изменении схемы
+try
+  BasisPacienti.Free;
+finally
+  BasisPacienti:= THuman.Create;
+end;
+  BasisPacienti.GetName;
+  BasisPacienti.GetPsiStatus;
+  BasisPacienti.GetLicnost;
+//  Pacienti.CopyPerson(BasisPacienti);
+end;
+
+procedure TForm1.CheckBox1Click(Sender: TObject);
+begin
+ if Form1.CheckBox1.Checked then begin
+  Form1.Button1.Visible:=True;
+  Form1.Button5.Visible:=True;
+  Form1.Button6.Visible:=True;
+  Form1.ComboBox2.Visible:=True;
+  Form1.ComboBox3.Visible:= True;
+ end else begin
+  Form1.Button1.Visible:=False;
+  Form1.Button5.Visible:=False;
+  Form1.Button6.Visible:=False;
+  Form1.ComboBox2.Visible:=False;
+  Form1.ComboBox3.Visible:=False;
+ end;
+
+end;
+
+procedure TForm1.ComboBox2Click(Sender: TObject);
+var
+i:integer;
+begin
+{
+for i := 0 to 3 do begin
+  if VarSindroms[i]=ComboBox2.Text then
+  Memo1.Lines.Add('Вы правильно определили ведущий синдром!');
+end;
+}
+end;
+
+procedure TForm1.Edit1Change(Sender: TObject);
+begin
+Form1.StringGrid1.Cells[StringGrid1.Col, StringGrid1.Row]:=Edit1.Text;
+end;
+
+procedure TForm1.Edit2Change(Sender: TObject);
+begin
+Form1.StringGrid1.Cells[StringGrid1.Col, StringGrid1.Row]:=Edit2.Text;
+end;
+
+procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+Pacienti.Free;
+BasisPacienti.Free;
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+var
+i:integer;
+begin
+Pacienti:= THuman.Create;
+BasisPacienti:= THuman.Create;
+for I := 1 to 12 do
+  Form1.StringGrid1.Cells[0,i]:=' '+IntToStr(i);
+  Form1.StringGrid1.Cells[0,0]:='   №';
+  Form1.StringGrid1.Cells[1,0]:='      Назначение';
+  Form1.StringGrid1.Cells[2,0]:='   Суточная доза (мг) ';
+  Form1.StringGrid1.Cells[3,0]:='   Действие';
+end;
+
+procedure TForm1.N16Click(Sender: TObject);
+begin
+Edit1.Text:='Аминазин';
+end;
+
+procedure TForm1.N17Click(Sender: TObject);
+begin
+Edit1.Text:='Трифтазин';
+end;
+
+procedure TForm1.N18Click(Sender: TObject);
+begin
+Edit1.Text:='Галоперидол';
+end;
+
+procedure TForm1.N19Click(Sender: TObject);
+begin
+Edit1.Text:='Тизерцин';
+end;
+
+procedure TForm1.N20Click(Sender: TObject);
+begin
+Edit1.Text:='Мажептил';
+end;
+
+procedure TForm1.N21Click(Sender: TObject);
+begin
+Edit1.Text:='Эглонил';
+end;
+
+procedure TForm1.N23Click(Sender: TObject);
+begin
+Edit2.Text:=N23.Caption;
+end;
+
+procedure TForm1.N24Click(Sender: TObject);
+begin
+Edit1.Text:='Алпразолам';
+end;
+
+procedure TForm1.N25Click(Sender: TObject);
+begin
+Edit1.Text:='Грандаксин';
+end;
+
+procedure TForm1.N26Click(Sender: TObject);
+begin
+Edit1.Text:='Диазепам';
+end;
+
+procedure TForm1.N27Click(Sender: TObject);
+begin
+Edit1.Text:='Клоназепам';
+end;
+
+procedure TForm1.N28Click(Sender: TObject);
+begin
+Edit1.Text:='Нитразепам';
+end;
+
+procedure TForm1.N29Click(Sender: TObject);
+begin
+Edit1.Text:='Феназепам';
+end;
+
+procedure TForm1.N30Click(Sender: TObject);
+begin
+Edit1.Text:='Сиднофен';
+end;
+
+procedure TForm1.N31Click(Sender: TObject);
+begin
+Edit1.Text:='Мелипрамин';
+end;
+
+procedure TForm1.N32Click(Sender: TObject);
+begin
+Edit1.Text:='Флуоксетин';
+end;
+
+procedure TForm1.N33Click(Sender: TObject);
+begin
+Edit1.Text:='Аурорикс';
+end;
+
+procedure TForm1.N34Click(Sender: TObject);
+begin
+Edit1.Text:='Анафранил';
+end;
+
+procedure TForm1.N35Click(Sender: TObject);
+begin
+Edit1.Text:='Паксил';
+end;
+
+procedure TForm1.N36Click(Sender: TObject);
+begin
+Edit1.Text:='Людиомил';
+end;
+
+procedure TForm1.N37Click(Sender: TObject);
+begin
+Edit1.Text:='Флувоксамин';
+end;
+
+procedure TForm1.N38Click(Sender: TObject);
+begin
+Edit1.Text:='Азафен';
+end;
+
+procedure TForm1.N39Click(Sender: TObject);
+begin
+Edit1.Text:='Леривон';
+end;
+
+procedure TForm1.N40Click(Sender: TObject);
+begin
+Edit1.Text:='Амитриптилин';
+end;
+
+procedure TForm1.N41Click(Sender: TObject);
+begin
+Edit1.Text:='Рисперидон';
+end;
+
+procedure TForm1.N42Click(Sender: TObject);
+begin
+Edit1.Text:='Азалептин';
+end;
+
+procedure TForm1.N43Click(Sender: TObject);
+begin
+Edit1.Text:='Зипрекса';
+end;
+
+procedure TForm1.N44Click(Sender: TObject);
+begin
+Edit1.Text:='Неулептил';
+end;
+
+procedure TForm1.N45Click(Sender: TObject);
+begin
+Edit1.Text:='Финлепсин';
+end;
+
+procedure TForm1.N46Click(Sender: TObject);
+begin
+Edit1.Text:='Лития карбонат';
+end;
+
+procedure TForm1.N47Click(Sender: TObject);
+begin
+Edit1.Text:='Вальпроат натрия';
+end;
+
+procedure TForm1.N48Click(Sender: TObject);
+begin
+Edit1.Text:='Пирацетам';
+end;
+
+procedure TForm1.N49Click(Sender: TObject);
+begin
+Edit1.Text:='Аминалон';
+end;
+
+procedure TForm1.N50Click(Sender: TObject);
+begin
+Edit1.Text:='Глицин';
+end;
+
+procedure TForm1.N51Click(Sender: TObject);
+begin
+Edit1.Text:='Пантогам';
+end;
+
+procedure TForm1.N52Click(Sender: TObject);
+begin
+Edit1.Text:='Фенибут';
+end;
+
+procedure TForm1.N53Click(Sender: TObject);
+begin
+Edit1.Text:='Церебролизин';
+end;
+
+procedure TForm1.N54Click(Sender: TObject);
+begin
+Edit1.Text:='Натрия бромид';
+end;
+
+procedure TForm1.N55Click(Sender: TObject);
+begin
+Edit1.Text:='Беллатаминал';
+end;
+
+procedure TForm1.N56Click(Sender: TObject);
+begin
+Edit1.Text:='Экстракт пустырника';
+end;
+
+procedure TForm1.N57Click(Sender: TObject);
+begin
+Edit1.Text:='Элеутерококк';
+end;
+
+procedure TForm1.N58Click(Sender: TObject);
+begin
+Edit1.Text:='Женьшень';
+end;
+
+procedure TForm1.N59Click(Sender: TObject);
+begin
+Edit1.Text:='Настойка аралии';
+end;
+
+procedure TForm1.N60Click(Sender: TObject);
+begin
+Edit1.Text:='Хлорпротиксен';
+end;
+
+procedure TForm1.N61Click(Sender: TObject);
+begin
+Edit1.Text:='Сонапакс';
+end;
+
+procedure TForm1.N63Click(Sender: TObject);
+begin
+Edit1.Text:='Циклодол';
+end;
+
+procedure TForm1.N9Click(Sender: TObject);
+begin
+Edit1.Text:='Экстракт валерьяны';
+end;
+
+procedure TForm1.StringGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+begin
+Edit1.Visible:=false;
+Edit2.Visible:=false;
+Edit3.Visible:=false;
+
+if (gdFocused in State) then begin
+  if ACol=1 then
+  begin
+    Edit1.Text:=StringGrid1.Cells[ACol, ARow];
+    Edit1.Left:=Rect.Left+StringGrid1.Left+2;
+    Edit1.Top:=Rect.Top+StringGrid1.Top+2;
+    Edit1.Width:=Rect.Right-Rect.Left;
+    Edit1.Height:=Rect.Bottom-Rect.Top;
+    Edit1.Visible:=true;
+  end;
+
+  if ACol=3 then
+  begin
+    Edit2.Text:=StringGrid1.Cells[ACol, ARow];
+    Edit2.Left:=Rect.Left+StringGrid1.Left+2;
+    Edit2.Top:=Rect.Top+StringGrid1.Top+2;
+    Edit2.Width:=Rect.Right-Rect.Left;
+    Edit2.Height:=Rect.Bottom-Rect.Top;
+    Edit2.Visible:=true;
+  end;
+end;
+
+end;
+
+procedure TForm1.Num1Click(Sender: TObject);
+begin
+Edit2.Text:=Num1.Caption;
+end;
+
+end.
